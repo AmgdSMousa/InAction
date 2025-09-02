@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ميادة عصام الدين | مستشار إعلامي</title>
+  <meta name="description" content="السيرة الذاتية والملف التعريفي — ميادة عصام الدين، مستشار إعلامي وخبير اتصالات استراتيجية." />
+  <style>
+    :root{
+      --bg:#0f172a;      /* slate-900 */
+      --card:#111827;    /* gray-900 */
+      --muted:#94a3b8;   /* slate-400 */
+      --text:#e5e7eb;    /* gray-200 */
+      --brand:#06b6d4;   /* cyan-500 */
+      --brand-2:#22d3ee; /* cyan-400 */
+      --ring: rgba(34, 211, 238, .35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Arabic", Tahoma, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.15), transparent 60%),
+                  radial-gradient(800px 400px at -10% 110%, rgba(6,182,212,.15), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.75;
+    }
+    a{ color: var(--brand-2); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{ max-width:1100px; margin:0 auto; padding: 20px; }
+    header{
+      position:sticky; top:0; backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(15,23,42,.9), rgba(15,23,42,.6));
+      border-bottom: 1px solid rgba(148,163,184,.15);
+      z-index: 20;
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding: 10px 0; }
+    .nav a{ padding:8px 12px; border-radius: 12px; }
+    .nav a:hover{ background: rgba(148,163,184,.08); text-decoration:none; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px; }
+    .badge{ border:1px solid rgba(148,163,184,.25); padding:2px 10px; border-radius:999px; font-size:12px; color:var(--muted); }
+    .lang-toggle{ display:flex; gap:8px; align-items:center; }
+    .btn{ cursor:pointer; border:1px solid rgba(148,163,184,.25); background:transparent; color:var(--text); padding:8px 12px; border-radius:12px; }
+    .btn.active{ border-color: var(--brand-2); box-shadow: 0 0 0 3px var(--ring); }
+
+    .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; align-items:center; padding:40px 0 20px; }
+    .card{ background: linear-gradient(180deg, rgba(17,24,39,.9), rgba(17,24,39,.7));
+           border:1px solid rgba(148,163,184,.15); border-radius:24px; padding:24px; }
+    .h1{ font-size: clamp(24px, 3vw, 40px); margin:0 0 10px; }
+    .lead{ color: var(--muted); }
+    .grid{ display:grid; gap:16px; }
+    .two{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .three{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .section{ padding: 24px 0; }
+    .section h2{ margin:0 0 12px; font-size: clamp(20px, 2.2vw, 28px); }
+    .pill{ display:inline-block; border:1px solid rgba(148,163,184,.2); padding:6px 10px; border-radius:999px; margin:4px; font-size:14px; color:var(--muted); }
+    .list{ margin:0; padding-inline-start: 18px; }
+    .list li{ margin: 6px 0; }
+    .muted{ color:var(--muted); }
+    .footer{ text-align:center; padding:32px 0 60px; color:var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } }
+    @media (max-width: 640px){ .two, .three{ grid-template-columns: 1fr; } }
+
+    /* LTR support */
+    [data-lang="en"]{ direction:ltr; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="badge">CV & Portfolio</span>
+        <span>ميادة عصام الدين</span>
+      </div>
+      <nav class="muted" style="display:flex; gap:8px; flex-wrap:wrap">
+        <a href="#about">من أنا</a>
+        <a href="#offer">ما الذي أقدمه</a>
+        <a href="#services">الخدمات</a>
+        <a href="#experience">الخبرات</a>
+        <a href="#education">التعليم</a>
+        <a href="#skills">المهارات</a>
+        <a href="#training">الدورات</a>
+        <a href="#languages">اللغات</a>
+        <a href="#contact">التواصل</a>
+      </nav>
+      <div class="lang-toggle">
+        <button class="btn active" id="btn-ar">عربي</button>
+        <button class="btn" id="btn-en">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card">
+        <h1 class="h1">مستشار إعلامي وخبير اتصالات استراتيجية</h1>
+        <p class="lead">خبرة أكثر من 13 عامًا في الإعلام والإعلان، وأكثر من 8 سنوات في تصميم وتنفيذ الحملات التوعوية والعلاجية والاجتماعية في مصر والخليج. أتميز ببناء الشراكات الاستراتيجية، قيادة فرق العمل عن بُعد، وتحويل الرؤى الإعلامية إلى نتائج ملموسة تعزز الصورة الذهنية للمؤسسات.</p>
+        <div style="margin-top:14px">
+          <a class="pill" href="mailto:mayadaessameldin9@gmail.com">mayadaessameldin9@gmail.com</a>
+          <a class="pill" href="tel:+201145155556">+20 11 4515 5556</a>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3 style="margin-top:0">نظرة سريعة</h3>
+          <ul class="list">
+            <li>تنفيذ أكثر من 20 حملة توعوية وطبية واجتماعية.</li>
+            <li>تحسين السمعة والهوية الإعلامية لعلامات تجارية وجهات رسمية.</li>
+            <li>قيادة فرق إعلامية عن بُعد لخدمة مؤسسات خليجية.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">للتواصل</h3>
+          <p class="muted">القاهرة – مصر | متاحة للعمل عن بُعد وفي الموقع.</p>
+          <p class="muted">LinkedIn متاح عند الطلب.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section card">
+      <h2>من أنا؟</h2>
+      <p>خبيرة إعلامية واستراتيجية في الإعلام والإعلان، مع خبرة واسعة في تصميم وإدارة الحملات، بناء الشراكات، وإدارة الأزمات والتغطيات الإعلامية عبر الصحافة والتلفزيون والإذاعة والمنصات الرقمية.</p>
+    </section>
+
+    <!-- OFFER -->
+    <section id="offer" class="section card">
+      <h2>ما الذي أقدمه؟</h2>
+      <div class="grid two">
+        <ul class="list">
+          <li>استشارات إعلامية واستراتيجية تعتمد على أهداف المؤسسة وتحليل الجمهور.</li>
+          <li>إدارة الحملات الإعلامية والطبية من التخطيط إلى التنفيذ والتقييم.</li>
+          <li>تدريب على مهارات الظهور الإعلامي وإدارة الأزمات.</li>
+          <li>تنظيم المؤتمرات الصحفية والفعاليات وفق معايير جودة عالية.</li>
+          <li>قيادة فرق عمل متخصصة وضمان جودة المخرجات.</li>
+        </ul>
+        <ul class="list">
+          <li>تخطيط وتنفيذ الحملات التوعوية والخيرية والطبية.</li>
+          <li>تقديم دعم شامل من الفكرة حتى التنفيذ والتقييم.</li>
+          <li>تنسيق مع شركات تنظيم المؤتمرات والرعاة.</li>
+          <li>تغطية إعلامية عبر الصحافة والتلفزيون والإذاعة والمنصات الرقمية.</li>
+          <li>إعداد المحتوى الإبداعي (سكريبتات، مقالات، بيانات صحفية).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SERVICES / COVERAGE -->
+    <section id="services" class="section card">
+      <h2>الخدمات الإعلامية والإبداعية</h2>
+      <ul class="list">
+        <li>إدارة فرق عمل (كتاب، مخرجون، منتجون) وتجهيز مواقع التصوير وتوفير فرق تصوير متكاملة.</li>
+        <li>إدارة التغطيات الميدانية والرقمية، والتنسيق مع الصحفيين والمراسلين.</li>
+        <li>إعداد خطة إعلامية متكاملة وتنفيذها، وتوفير المعدات التقنية (كاميرات، صوت، إضاءة، شاشات، بث مباشر).</li>
+        <li>إعداد وتقديم البرامج واللقاءات، وكتابة وتصميم السكريبتات، وتنسيق الضيوف وحجز الاستوديوهات.</li>
+      </ul>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section card">
+      <h2>الخبرات العملية</h2>
+      <div class="grid">
+        <div>
+          <h3 style="margin:10px 0 6px">مدير التسويق والإدارة الإعلامية (خليج) — 2020 حتى الآن</h3>
+          <ul class="list">
+            <li>قيادة فريق إعلامي من القاهرة لخدمة مؤسسات خليجية.</li>
+            <li>تنفيذ أكثر من 20 حملة توعوية وطبية واجتماعية.</li>
+            <li>تحسين السمعة والهوية الإعلامية للعلامات التجارية وإعداد تقارير تحليلية دورية.</li>
+            <li>إدارة الأزمات الإعلامية والتنسيق مع الفرق التنفيذية.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:10px 0 6px">مستشارة إعلامية — نقابة الأطباء (مصر)، 2018 – حتى الآن</h3>
+          <ul class="list">
+            <li>تصميم وتنفيذ خطط إعلامية للقطاع الصحي وإنتاج محتوى طبي وتوعوي.</li>
+            <li>تنظيم المؤتمرات والتغطيات التلفزيونية وتدريب القيادات الطبية على الظهور الإعلامي.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:10px 0 6px">معدة برامج ومساعد مخرج — قناة المحور، 2016 – 2018</h3>
+          <ul class="list">
+            <li>إعداد سكريبتات ومحتوى لبرامج اجتماعية وطبية (ساعة مع شريف – الطبيب).</li>
+            <li>التنسيق اللوجستي قبل وأثناء التصوير ودعم عملية الإخراج.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:10px 0 6px">رئيسة تحرير ومقدمة برامج إذاعية — 2015 – 2016</h3>
+          <ul class="list">
+            <li>تقديم وإعداد برامج إذاعية تفاعلية، وكتابة السكريبت والتفاعل مع المستمعين.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:10px 0 6px">مديرة إنتاج — شركات إنتاج إعلامي وتسويقي، 2013 – 2016</h3>
+          <ul class="list">
+            <li>إنتاج إعلانات توعوية وطبية واجتماعية، وإدارة فرق التصوير والمونتاج.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section card">
+      <h2>المؤهلات العلمية</h2>
+      <p><strong>بكالوريوس إعلام – قسم إذاعة وتلفزيون</strong><br>IAEMS، القاهرة — 2017</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section card">
+      <h2>المهارات الأساسية</h2>
+      <div class="grid two">
+        <div>
+          <h3 style="margin:0 0 8px">مهارات استراتيجية وإعلامية</h3>
+          <ul class="list">
+            <li>إدارة السمعة المؤسسية وبناء الصورة الذهنية.</li>
+            <li>تحليل الجمهور وصياغة الرسائل الإعلامية.</li>
+            <li>التخطيط والإشراف على الحملات التوعوية والطبية.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 8px">مهارات تقنية وإبداعية</h3>
+          <ul class="list">
+            <li>إعداد المحتوى الإبداعي (سكريبت، مقالات، بيانات).</li>
+            <li>التسويق الرقمي (Facebook, X, LinkedIn) وتحليلات Google.</li>
+            <li>تنسيق البرامج التلفزيونية والإذاعية وإدارة الإنتاج.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 8px">مهارات قيادية وتنفيذية</h3>
+          <ul class="list">
+            <li>قيادة وتدريب فرق إعلامية محلية وعن بُعد.</li>
+            <li>إدارة الأزمات وصياغة الرسائل الرسمية.</li>
+            <li>تنسيق المؤتمرات والفعاليات.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 8px">مهارات شخصية ومهنية</h3>
+          <ul class="list">
+            <li>اتصال فعال وإقناع وعمل جماعي وتنظيم عالٍ.</li>
+            <li>تفكير تحليلي واتخاذ القرار تحت الضغط.</li>
+            <li>التحدث أمام الجمهور والتعامل مع وسائل الإعلام.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINING -->
+    <section id="training" class="section card">
+      <h2>الدورات والتدريب</h2>
+      <div class="grid two">
+        <ul class="list">
+          <li>إعداد وتقديم البرامج التلفزيونية — معهد الإذاعة والتلفزيون.</li>
+          <li>كتابة السكريبت الإذاعي والتلفزيوني — أكاديمية الإعلام الحديث.</li>
+          <li>Voice Over & Podcasting — New Media Academy، دبي.</li>
+          <li>Script Writing for TV & Film.</li>
+          <li>Google Digital Marketing & E‑commerce — Coursera.</li>
+          <li>Digital Marketing Specialization — Meta / Coursera.</li>
+          <li>Social Marketing — Johns Hopkins / FutureLearn.</li>
+        </ul>
+        <ul class="list">
+          <li>Remote Team Leadership.</li>
+          <li>Train the Trainer — معهد التنمية البشرية.</li>
+          <li>Leadership & Management Specialization.</li>
+          <li>Health Communication — WHO.</li>
+          <li>Behavioral Science for Health Campaigns — FutureLearn.</li>
+          <li>Social Marketing in Public Health — CDC.</li>
+          <li>Event Management & Media Relations — Coursera.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section id="languages" class="section card">
+      <h2>اللغات</h2>
+      <span class="pill">العربية: اللغة الأم</span>
+      <span class="pill">الإنجليزية: جيد جدًا</span>
+      <span class="pill">الألمانية: متوسطة</span>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section card">
+      <h2>معلومات التواصل</h2>
+      <div class="grid two">
+        <div>
+          <p>البريد: <a href="mailto:mayadaessameldin9@gmail.com">mayadaessameldin9@gmail.com</a><br />الهاتف: <a href="tel:+201145155556">+20 11 4515 5556</a></p>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('شكرًا لك! تم استلام رسالتك.');">
+          <div class="grid two">
+            <input aria-label="الاسم" required placeholder="الاسم" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+            <input type="email" aria-label="البريد" required placeholder="البريد" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+          </div>
+          <textarea aria-label="الرسالة" required placeholder="رسالتك" rows="4" style="margin-top:8px;width:100%;padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)"></textarea>
+          <div style="margin-top:8px">
+            <button class="btn" type="submit">إرسال</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">THANK YOU — Mayada Essam Eldin</footer>
+  </main>
+
+  <!-- English layer -->
+  <div id="en-layer" data-lang="en" hidden>
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <span class="badge">CV & Portfolio</span>
+          <span>Mayada Essam Eldin</span>
+        </div>
+        <nav class="muted" style="display:flex; gap:8px; flex-wrap:wrap">
+          <a href="#en-about">About</a>
+          <a href="#en-offer">What I Offer</a>
+          <a href="#en-services">Services</a>
+          <a href="#en-experience">Experience</a>
+          <a href="#en-education">Education</a>
+          <a href="#en-skills">Core Skills</a>
+          <a href="#en-training">Training</a>
+          <a href="#en-languages">Languages</a>
+          <a href="#en-contact">Contact</a>
+        </nav>
+        <div class="lang-toggle">
+          <button class="btn" id="btn-ar-2">عربي</button>
+          <button class="btn active" id="btn-en-2">English</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="card">
+          <h1 class="h1">Media & Strategic Communications Consultant</h1>
+          <p class="lead">13+ years in media & advertising and 8+ years designing and executing awareness, therapeutic and social campaigns across Egypt and the Gulf. Skilled in strategic partnerships, remote team leadership, and turning media visions into tangible results.</p>
+          <div style="margin-top:14px">
+            <a class="pill" href="mailto:mayadaessameldin9@gmail.com">mayadaessameldin9@gmail.com</a>
+            <a class="pill" href="tel:+201145155556">+20 11 4515 5556</a>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3 style="margin-top:0">At a glance</h3>
+            <ul class="list">
+              <li>20+ awareness & medical campaigns.</li>
+              <li>Brand reputation and identity uplift for public/private entities.</li>
+              <li>Leading remote media teams serving Gulf institutions.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="margin-top:0">Contact</h3>
+            <p class="muted">Cairo, Egypt — Open to remote & onsite engagements.</p>
+            <p class="muted">LinkedIn available upon request.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="en-about" class="section card">
+        <h2>About Me</h2>
+        <p>Media and strategic communications expert experienced in campaign design and management, partnerships, crisis handling, and integrated coverage across press, TV, radio, and digital platforms.</p>
+      </section>
+
+      <section id="en-offer" class="section card">
+        <h2>What Can I Offer?</h2>
+        <div class="grid two">
+          <ul class="list">
+            <li>Media & strategic consulting aligned with organizational goals and audience insights.</li>
+            <li>End‑to‑end management of media & medical campaigns.</li>
+            <li>Media appearance & crisis communication training.</li>
+            <li>High‑quality press conferences & events.</li>
+            <li>Leadership of specialized teams and quality assurance.</li>
+          </ul>
+          <ul class="list">
+            <li>Planning and executing awareness, charity, and medical campaigns.</li>
+            <li>Full support from ideation to evaluation.</li>
+            <li>Coordination with conference organizers and sponsors.</li>
+            <li>Media coverage across press, TV, radio, and digital.</li>
+            <li>Creative content (scripts, articles, press releases).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="en-services" class="section card">
+        <h2>Media & Creative Services</h2>
+        <ul class="list">
+          <li>Team management (writers, directors, producers), location prep, and full crews.</li>
+          <li>Field & digital coverage; coordination with journalists and correspondents.</li>
+          <li>Integrated media plans and technical provisioning (cameras, audio, lighting, live streaming).</li>
+          <li>Program/Interview preparation & hosting, script writing/design, guest coordination & studio booking.</li>
+        </ul>
+      </section>
+
+      <section id="en-experience" class="section card">
+        <h2>Experience</h2>
+        <div class="grid">
+          <div>
+            <h3 style="margin:10px 0 6px">Head of Marketing & Media (Gulf) — 2020–Present</h3>
+            <ul class="list">
+              <li>Led a Cairo‑based media team serving Gulf organizations.</li>
+              <li>Delivered 20+ awareness/medical/social campaigns.</li>
+              <li>Enhanced brand reputation & identity with data‑driven reporting.</li>
+              <li>Crisis communications and cross‑team coordination.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin:10px 0 6px">Media Consultant — Egyptian Medical Syndicate, 2018–Present</h3>
+            <ul class="list">
+              <li>Designed sector‑specific media plans and produced medical content for the public.</li>
+              <li>Organized conferences & TV coverage; trained medical leaders.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin:10px 0 6px">Program Producer & Assistant Director — Al Mehwar TV, 2016–2018</h3>
+            <ul class="list">
+              <li>Scripts & content for popular social/medical shows (e.g., “Sa‘a Ma‘a Sherif”, “Al‑Tabeeb”).</li>
+              <li>Guest logistics and production support.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin:10px 0 6px">Radio Editor‑in‑Chief & Presenter — 2015–2016</h3>
+            <ul class="list">
+              <li>Hosted and produced interactive radio programs; live audience engagement.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin:10px 0 6px">Production Manager — Media/Marketing Houses, 2013–2016</h3>
+            <ul class="list">
+              <li>Produced awareness/medical/social ads; led filming and editing teams.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="en-education" class="section card">
+        <h2>Education</h2>
+        <p><strong>B.A. in Media — Radio & TV</strong><br />IAEMS, Cairo — 2017</p>
+      </section>
+
+      <section id="en-skills" class="section card">
+        <h2>Core Skills</h2>
+        <div class="grid two">
+          <div>
+            <h3 style="margin:0 0 8px">Strategy & Communications</h3>
+            <ul class="list">
+              <li>Corporate reputation & brand image.</li>
+              <li>Audience analysis & messaging.</li>
+              <li>Planning & supervision of awareness/medical campaigns.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin:0 0 8px">Technical & Creative</h3>
+            <ul class="list">
+              <li>Creative content (scripts, articles, press releases).</li>
+              <li>Digital marketing (Facebook, X, LinkedIn), Google Analytics.</li>
+              <li>TV/Radio program coordination & production.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin:0 0 8px">Leadership & Delivery</h3>
+            <ul class="list">
+              <li>Leading & training local/remote media teams.</li>
+              <li>Crisis communications & official messaging.</li>
+              <li>Conference & event coordination.</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin:0 0 8px">Personal & Professional</h3>
+            <ul class="list">
+              <li>Effective communication, persuasion, teamwork & organization.</li>
+              <li>Analytical thinking & decision‑making under pressure.</li>
+              <li>Public speaking & media handling.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="en-training" class="section card">
+        <h2>Training & Certifications</h2>
+        <div class="grid two">
+          <ul class="list">
+            <li>TV Program Presenting — Radio & TV Institute.</li>
+            <li>Scriptwriting for Radio & TV — Modern Media Academy.</li>
+            <li>Voice Over & Podcasting — New Media Academy (Dubai).</li>
+            <li>Script Writing for TV & Film.</li>
+            <li>Google Digital Marketing & E‑commerce — Coursera.</li>
+            <li>Digital Marketing Specialization — Meta / Coursera.</li>
+            <li>Social Marketing — Johns Hopkins / FutureLearn.</li>
+          </ul>
+          <ul class="list">
+            <li>Remote Team Leadership; Train the Trainer.</li>
+            <li>Leadership & Management Specialization.</li>
+            <li>Health Communication — WHO; Behavioral Science for Health Campaigns — FutureLearn.</li>
+            <li>Social Marketing in Public Health — CDC.</li>
+            <li>Event Management & Media Relations — Coursera.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="en-languages" class="section card">
+        <h2>Languages</h2>
+        <span class="pill">Arabic: Native</span>
+        <span class="pill">English: Very Good</span>
+        <span class="pill">German: Intermediate</span>
+      </section>
+
+      <section id="en-contact" class="section card">
+        <h2>Contact</h2>
+        <div class="grid two">
+          <div>
+            <p>Email: <a href="mailto:mayadaessameldin9@gmail.com">mayadaessameldin9@gmail.com</a><br />Phone: <a href="tel:+201145155556">+20 11 4515 5556</a></p>
+          </div>
+          <form onsubmit="event.preventDefault(); alert('Thanks! Your message has been received.');">
+            <div class="grid two">
+              <input aria-label="Name" required placeholder="Name" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+              <input type="email" aria-label="Email" required placeholder="Email" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+            </div>
+            <textarea aria-label="Message" required placeholder="Message" rows="4" style="margin-top:8px;width:100%;padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)"></textarea>
+            <div style="margin-top:8px">
+              <button class="btn" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer class="footer">THANK YOU — Mayada Essam Eldin</footer>
+    </main>
+  </div>
+
+  <script>
+    // Language toggling
+    const arRoot = document.documentElement;
+    const enLayer = document.getElementById('en-layer');
+    const btnAr = document.getElementById('btn-ar');
+    const btnEn = document.getElementById('btn-en');
+    const btnAr2 = document.getElementById('btn-ar-2');
+    const btnEn2 = document.getElementById('btn-en-2');
+
+    function showArabic(){
+      arRoot.removeAttribute('data-lang');
+      arRoot.setAttribute('dir','rtl');
+      enLayer.hidden = true;
+      btnAr?.classList.add('active');
+      btnEn?.classList.remove('active');
+    }
+    function showEnglish(){
+      arRoot.setAttribute('data-lang','en');
+      arRoot.setAttribute('dir','ltr');
+      enLayer.hidden = false;
+      btnEn?.classList.add('active');
+      btnAr?.classList.remove('active');
+    }
+
+    btnAr?.addEventListener('click', showArabic);
+    btnEn?.addEventListener('click', showEnglish);
+    btnAr2?.addEventListener('click', showArabic);
+    btnEn2?.addEventListener('click', showEnglish);
+  </script>
+</body>
+</html>
