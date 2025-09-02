@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ميادة عصام الدين | مستشار إعلامي</title>
   <meta name="description" content="السيرة الذاتية والملف التعريفي — ميادة عصام الدين، مستشار إعلامي وخبير اتصالات استراتيجية." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
   <style>
     :root{
       --bg:#0f172a;      /* slate-900 */
@@ -14,6 +15,9 @@
       --brand:#06b6d4;   /* cyan-500 */
       --brand-2:#22d3ee; /* cyan-400 */
       --ring: rgba(34, 211, 238, .35);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; }
@@ -41,8 +45,12 @@
     .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px; }
     .badge{ border:1px solid rgba(148,163,184,.25); padding:2px 10px; border-radius:999px; font-size:12px; color:var(--muted); }
     .lang-toggle{ display:flex; gap:8px; align-items:center; }
-    .btn{ cursor:pointer; border:1px solid rgba(148,163,184,.25); background:transparent; color:var(--text); padding:8px 12px; border-radius:12px; }
+    .btn{ cursor:pointer; border:1px solid rgba(148,163,184,.25); background:transparent; color:var(--text); padding:8px 12px; border-radius:12px; transition: all 0.3s ease; }
     .btn.active{ border-color: var(--brand-2); box-shadow: 0 0 0 3px var(--ring); }
+    .btn:hover{ background: rgba(148,163,184,.08); }
+    .btn.success{ border-color: var(--success); color: var(--success); }
+    .btn.warning{ border-color: var(--warning); color: var(--warning); }
+    .btn.danger{ border-color: var(--danger); color: var(--danger); }
 
     .hero{ display:grid; grid-template-columns: 1.2fr .8fr; gap:24px; align-items:center; padding:40px 0 20px; }
     .card{ background: linear-gradient(180deg, rgba(17,24,39,.9), rgba(17,24,39,.7));
@@ -60,15 +68,102 @@
     .muted{ color:var(--muted); }
     .footer{ text-align:center; padding:32px 0 60px; color:var(--muted); }
 
+    /* Cookie Banner */
+    .cookie-banner{
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      background: linear-gradient(180deg, rgba(17,24,39,.95), rgba(17,24,39,.9));
+      border-top: 1px solid rgba(148,163,184,.25);
+      padding: 20px; backdrop-filter: blur(10px);
+      transform: translateY(100%); transition: transform 0.3s ease;
+    }
+    .cookie-banner.show{ transform: translateY(0); }
+    .cookie-content{ max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .cookie-text{ flex: 1; min-width: 300px; }
+    .cookie-actions{ display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Newsletter */
+    .newsletter-card{ background: linear-gradient(135deg, rgba(6,182,212,.1), rgba(34,211,238,.05)); border: 1px solid rgba(6,182,212,.2); }
+    .newsletter-form{ display: flex; gap: 12px; margin-top: 16px; }
+    .newsletter-input{ flex: 1; padding: 12px; border-radius: 12px; border: 1px solid rgba(148,163,184,.25); background: transparent; color: var(--text); }
+    .newsletter-input::placeholder{ color: var(--muted); }
+
+    /* Privacy Settings */
+    .privacy-settings{ display: none; }
+    .privacy-settings.show{ display: block; }
+    .setting-item{ display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(148,163,184,.1); }
+    .setting-item:last-child{ border-bottom: none; }
+    .toggle-switch{ position: relative; width: 50px; height: 24px; }
+    .toggle-switch input{ opacity: 0; width: 0; height: 0; }
+    .slider{ position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: rgba(148,163,184,.25); transition: .4s; border-radius: 24px; }
+    .slider:before{ position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; transition: .4s; border-radius: 50%; }
+    input:checked + .slider{ background: var(--brand); }
+    input:checked + .slider:before{ transform: translateX(26px); }
+
+    /* Notifications */
+    .notification{
+      position: fixed; top: 20px; right: 20px; z-index: 200;
+      background: var(--card); border: 1px solid rgba(148,163,184,.25);
+      border-radius: 12px; padding: 16px 20px; max-width: 400px;
+      transform: translateX(120%); transition: transform 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+    }
+    .notification.show{ transform: translateX(0); }
+    .notification.success{ border-color: var(--success); }
+    .notification.warning{ border-color: var(--warning); }
+    .notification.danger{ border-color: var(--danger); }
+    .notification-content{ display: flex; align-items: center; gap: 12px; }
+    .notification-icon{ font-size: 18px; }
+    .notification.success .notification-icon{ color: var(--success); }
+    .notification.warning .notification-icon{ color: var(--warning); }
+    .notification.danger .notification-icon{ color: var(--danger); }
+
+    /* Unsubscribe Section */
+    .unsubscribe-section{ background: linear-gradient(135deg, rgba(239,68,68,.1), rgba(239,68,68,.05)); border: 1px solid rgba(239,68,68,.2); }
+
     /* Responsive */
     @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } }
-    @media (max-width: 640px){ .two, .three{ grid-template-columns: 1fr; } }
+    @media (max-width: 640px){ 
+      .two, .three{ grid-template-columns: 1fr; }
+      .cookie-content{ flex-direction: column; align-items: stretch; }
+      .cookie-actions{ justify-content: center; }
+      .newsletter-form{ flex-direction: column; }
+    }
 
     /* LTR support */
     [data-lang="en"]{ direction:ltr; }
+    [data-lang="en"] .notification{ right: auto; left: 20px; }
   </style>
 </head>
 <body>
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-content">
+      <div class="cookie-text">
+        <strong id="cookie-title">نستخدم ملفات تعريف الارتباط</strong>
+        <p id="cookie-desc" style="margin: 4px 0 0; font-size: 14px; color: var(--muted);">نحن نستخدم الكوكيز لتحسين تجربتك وتذكر تفضيلاتك. يمكنك إدارة إعداداتك في أي وقت.</p>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn" onclick="showPrivacySettings()">
+          <i class="fas fa-cog"></i> <span id="cookie-settings">الإعدادات</span>
+        </button>
+        <button class="btn success" onclick="acceptAllCookies()">
+          <i class="fas fa-check"></i> <span id="cookie-accept">موافق على الكل</span>
+        </button>
+        <button class="btn danger" onclick="rejectAllCookies()">
+          <i class="fas fa-times"></i> <span id="cookie-reject">رفض الكل</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification -->
+  <div id="notification" class="notification">
+    <div class="notification-content">
+      <i class="fas fa-check notification-icon"></i>
+      <span id="notification-text"></span>
+    </div>
+  </div>
+
   <header>
     <div class="container nav">
       <div class="brand">
@@ -84,6 +179,8 @@
         <a href="#skills">المهارات</a>
         <a href="#training">الدورات</a>
         <a href="#languages">اللغات</a>
+        <a href="#newsletter">النشرة</a>
+        <a href="#privacy">الخصوصية</a>
         <a href="#contact">التواصل</a>
       </nav>
       <div class="lang-toggle">
@@ -279,6 +376,105 @@
       <span class="pill">الألمانية: متوسطة</span>
     </section>
 
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="section card newsletter-card">
+      <h2><i class="fas fa-envelope"></i> الاشتراك في النشرة الإخبارية</h2>
+      <p class="muted">احصل على آخر المقالات والاستشارات الإعلامية والأخبار المهنية مباشرة في بريدك الإلكتروني.</p>
+      
+      <div class="newsletter-form">
+        <input type="email" id="newsletter-email" class="newsletter-input" placeholder="أدخل بريدك الإلكتروني" required>
+        <button class="btn success" onclick="subscribeNewsletter()">
+          <i class="fas fa-paper-plane"></i> اشتراك
+        </button>
+      </div>
+      
+      <div class="setting-item" style="margin-top: 16px; border: none; padding-top: 16px; border-top: 1px solid rgba(148,163,184,.1);">
+        <div>
+          <label for="newsletter-consent" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+            <input type="checkbox" id="newsletter-consent" required>
+            <span>أوافق على تلقي النشرة الإخبارية وأؤكد قراءتي لسياسة الخصوصية</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY & UNSUBSCRIBE -->
+    <section id="privacy" class="section card">
+      <h2><i class="fas fa-shield-alt"></i> إعدادات الخصوصية والبيانات</h2>
+      
+      <!-- Privacy Settings -->
+      <div class="privacy-settings" id="privacy-settings">
+        <h3>تفضيلات الكوكيز</h3>
+        <div class="setting-item">
+          <div>
+            <strong>كوكيز أساسية</strong>
+            <p class="muted" style="margin: 4px 0 0; font-size: 14px;">ضرورية لعمل الموقع بشكل صحيح</p>
+          </div>
+          <div class="toggle-switch">
+            <input type="checkbox" id="essential-cookies" checked disabled>
+            <span class="slider"></span>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div>
+            <strong>كوكيز التحليلات</strong>
+            <p class="muted" style="margin: 4px 0 0; font-size: 14px;">تساعدنا في فهم كيفية استخدام الموقع</p>
+          </div>
+          <div class="toggle-switch">
+            <input type="checkbox" id="analytics-cookies">
+            <span class="slider"></span>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div>
+            <strong>كوكيز التسويق</strong>
+            <p class="muted" style="margin: 4px 0 0; font-size: 14px;">تُستخدم لعرض إعلانات مخصصة</p>
+          </div>
+          <div class="toggle-switch">
+            <input type="checkbox" id="marketing-cookies">
+            <span class="slider"></span>
+          </div>
+        </div>
+        
+        <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn success" onclick="savePrivacySettings()">
+            <i class="fas fa-save"></i> حفظ الإعدادات
+          </button>
+          <button class="btn" onclick="resetPrivacySettings()">
+            <i class="fas fa-undo"></i> إعادة التعيين
+          </button>
+        </div>
+      </div>
+
+      <!-- Unsubscribe Section -->
+      <div class="unsubscribe-section card" style="margin-top: 24px;">
+        <h3><i class="fas fa-unlink"></i> إلغاء الاشتراك</h3>
+        <p class="muted">إذا كنت ترغب في إلغاء اشتراكك من النشرة الإخبارية، يمكنك القيام بذلك هنا.</p>
+        
+        <div class="newsletter-form">
+          <input type="email" id="unsubscribe-email" class="newsletter-input" placeholder="أدخل بريدك الإلكتروني المُسجل">
+          <button class="btn danger" onclick="unsubscribeNewsletter()">
+            <i class="fas fa-times"></i> إلغاء الاشتراك
+          </button>
+        </div>
+      </div>
+
+      <!-- Data Management -->
+      <div style="margin-top: 24px;">
+        <h3>إدارة البيانات الشخصية</h3>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px;">
+          <button class="btn" onclick="downloadData()">
+            <i class="fas fa-download"></i> تحميل بياناتي
+          </button>
+          <button class="btn danger" onclick="deleteData()">
+            <i class="fas fa-trash"></i> حذف بياناتي
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="section card">
       <h2>معلومات التواصل</h2>
@@ -286,12 +482,20 @@
         <div>
           <p>البريد: <a href="mailto:mayadaessameldin9@gmail.com">mayadaessameldin9@gmail.com</a><br />الهاتف: <a href="tel:+201145155556">+20 11 4515 5556</a></p>
         </div>
-        <form onsubmit="event.preventDefault(); alert('شكرًا لك! تم استلام رسالتك.');">
+        <form onsubmit="event.preventDefault(); submitContactForm();">
           <div class="grid two">
-            <input aria-label="الاسم" required placeholder="الاسم" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
-            <input type="email" aria-label="البريد" required placeholder="البريد" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+            <input aria-label="الاسم" id="contact-name" required placeholder="الاسم" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+            <input type="email" aria-label="البريد" id="contact-email" required placeholder="البريد" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
           </div>
-          <textarea aria-label="الرسالة" required placeholder="رسالتك" rows="4" style="margin-top:8px;width:100%;padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)"></textarea>
+          <textarea aria-label="الرسالة" id="contact-message" required placeholder="رسالتك" rows="4" style="margin-top:8px;width:100%;padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)"></textarea>
+          
+          <div class="setting-item" style="border: none; padding: 8px 0;">
+            <label for="contact-consent" style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+              <input type="checkbox" id="contact-consent" required>
+              <span>أوافق على معالجة بياناتي لأغراض التواصل</span>
+            </label>
+          </div>
+          
           <div style="margin-top:8px">
             <button class="btn" type="submit">إرسال</button>
           </div>
@@ -319,6 +523,8 @@
           <a href="#en-skills">Core Skills</a>
           <a href="#en-training">Training</a>
           <a href="#en-languages">Languages</a>
+          <a href="#en-newsletter">Newsletter</a>
+          <a href="#en-privacy">Privacy</a>
           <a href="#en-contact">Contact</a>
         </nav>
         <div class="lang-toggle">
@@ -412,7 +618,7 @@
           <div>
             <h3 style="margin:10px 0 6px">Program Producer & Assistant Director — Al Mehwar TV, 2016–2018</h3>
             <ul class="list">
-              <li>Scripts & content for popular social/medical shows (e.g., “Sa‘a Ma‘a Sherif”, “Al‑Tabeeb”).</li>
+              <li>Scripts & content for popular social/medical shows (e.g., "Sa'a Ma'a Sherif", "Al‑Tabeeb").</li>
               <li>Guest logistics and production support.</li>
             </ul>
           </div>
@@ -503,18 +709,125 @@
         <span class="pill">German: Intermediate</span>
       </section>
 
+      <!-- NEWSLETTER -->
+      <section id="en-newsletter" class="section card newsletter-card">
+        <h2><i class="fas fa-envelope"></i> Newsletter Subscription</h2>
+        <p class="muted">Get the latest articles, media consultations, and professional news directly to your inbox.</p>
+        
+        <div class="newsletter-form">
+          <input type="email" id="newsletter-email-en" class="newsletter-input" placeholder="Enter your email address" required>
+          <button class="btn success" onclick="subscribeNewsletterEn()">
+            <i class="fas fa-paper-plane"></i> Subscribe
+          </button>
+        </div>
+        
+        <div class="setting-item" style="margin-top: 16px; border: none; padding-top: 16px; border-top: 1px solid rgba(148,163,184,.1);">
+          <div>
+            <label for="newsletter-consent-en" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="newsletter-consent-en" required>
+              <span>I agree to receive the newsletter and confirm reading the privacy policy</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRIVACY & UNSUBSCRIBE -->
+      <section id="en-privacy" class="section card">
+        <h2><i class="fas fa-shield-alt"></i> Privacy & Data Settings</h2>
+        
+        <!-- Privacy Settings -->
+        <div class="privacy-settings show">
+          <h3>Cookie Preferences</h3>
+          <div class="setting-item">
+            <div>
+              <strong>Essential Cookies</strong>
+              <p class="muted" style="margin: 4px 0 0; font-size: 14px;">Necessary for the website to function properly</p>
+            </div>
+            <div class="toggle-switch">
+              <input type="checkbox" id="essential-cookies-en" checked disabled>
+              <span class="slider"></span>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div>
+              <strong>Analytics Cookies</strong>
+              <p class="muted" style="margin: 4px 0 0; font-size: 14px;">Help us understand how the website is used</p>
+            </div>
+            <div class="toggle-switch">
+              <input type="checkbox" id="analytics-cookies-en">
+              <span class="slider"></span>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div>
+              <strong>Marketing Cookies</strong>
+              <p class="muted" style="margin: 4px 0 0; font-size: 14px;">Used to display personalized advertisements</p>
+            </div>
+            <div class="toggle-switch">
+              <input type="checkbox" id="marketing-cookies-en">
+              <span class="slider"></span>
+            </div>
+          </div>
+          
+          <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn success" onclick="savePrivacySettingsEn()">
+              <i class="fas fa-save"></i> Save Settings
+            </button>
+            <button class="btn" onclick="resetPrivacySettingsEn()">
+              <i class="fas fa-undo"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Unsubscribe Section -->
+        <div class="unsubscribe-section card" style="margin-top: 24px;">
+          <h3><i class="fas fa-unlink"></i> Unsubscribe</h3>
+          <p class="muted">If you want to unsubscribe from our newsletter, you can do so here.</p>
+          
+          <div class="newsletter-form">
+            <input type="email" id="unsubscribe-email-en" class="newsletter-input" placeholder="Enter your registered email">
+            <button class="btn danger" onclick="unsubscribeNewsletterEn()">
+              <i class="fas fa-times"></i> Unsubscribe
+            </button>
+          </div>
+        </div>
+
+        <!-- Data Management -->
+        <div style="margin-top: 24px;">
+          <h3>Personal Data Management</h3>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px;">
+            <button class="btn" onclick="downloadDataEn()">
+              <i class="fas fa-download"></i> Download My Data
+            </button>
+            <button class="btn danger" onclick="deleteDataEn()">
+              <i class="fas fa-trash"></i> Delete My Data
+            </button>
+          </div>
+        </div>
+      </section>
+
       <section id="en-contact" class="section card">
         <h2>Contact</h2>
         <div class="grid two">
           <div>
             <p>Email: <a href="mailto:mayadaessameldin9@gmail.com">mayadaessameldin9@gmail.com</a><br />Phone: <a href="tel:+201145155556">+20 11 4515 5556</a></p>
           </div>
-          <form onsubmit="event.preventDefault(); alert('Thanks! Your message has been received.');">
+          <form onsubmit="event.preventDefault(); submitContactFormEn();">
             <div class="grid two">
-              <input aria-label="Name" required placeholder="Name" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
-              <input type="email" aria-label="Email" required placeholder="Email" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+              <input aria-label="Name" id="contact-name-en" required placeholder="Name" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
+              <input type="email" aria-label="Email" id="contact-email-en" required placeholder="Email" style="padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)" />
             </div>
-            <textarea aria-label="Message" required placeholder="Message" rows="4" style="margin-top:8px;width:100%;padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)"></textarea>
+            <textarea aria-label="Message" id="contact-message-en" required placeholder="Message" rows="4" style="margin-top:8px;width:100%;padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:transparent;color:var(--text)"></textarea>
+            
+            <div class="setting-item" style="border: none; padding: 8px 0;">
+              <label for="contact-consent-en" style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px;">
+                <input type="checkbox" id="contact-consent-en" required>
+                <span>I agree to process my data for communication purposes</span>
+              </label>
+            </div>
+            
             <div style="margin-top:8px">
               <button class="btn" type="submit">Send</button>
             </div>
@@ -527,6 +840,9 @@
   </div>
 
   <script>
+    // Language and UI state
+    let currentLang = 'ar';
+    
     // Language toggling
     const arRoot = document.documentElement;
     const enLayer = document.getElementById('en-layer');
@@ -536,24 +852,459 @@
     const btnEn2 = document.getElementById('btn-en-2');
 
     function showArabic(){
+      currentLang = 'ar';
       arRoot.removeAttribute('data-lang');
       arRoot.setAttribute('dir','rtl');
       enLayer.hidden = true;
       btnAr?.classList.add('active');
       btnEn?.classList.remove('active');
+      updateCookieBannerText();
     }
+    
     function showEnglish(){
+      currentLang = 'en';
       arRoot.setAttribute('data-lang','en');
       arRoot.setAttribute('dir','ltr');
       enLayer.hidden = false;
       btnEn?.classList.add('active');
       btnAr?.classList.remove('active');
+      updateCookieBannerText();
     }
 
     btnAr?.addEventListener('click', showArabic);
     btnEn?.addEventListener('click', showEnglish);
     btnAr2?.addEventListener('click', showArabic);
     btnEn2?.addEventListener('click', showEnglish);
+
+    // Cookie banner text updates
+    function updateCookieBannerText() {
+      const texts = {
+        ar: {
+          title: 'نستخدم ملفات تعريف الارتباط',
+          desc: 'نحن نستخدم الكوكيز لتحسين تجربتك وتذكر تفضيلاتك. يمكنك إدارة إعداداتك في أي وقت.',
+          settings: 'الإعدادات',
+          accept: 'موافق على الكل',
+          reject: 'رفض الكل'
+        },
+        en: {
+          title: 'We use cookies',
+          desc: 'We use cookies to improve your experience and remember your preferences. You can manage your settings at any time.',
+          settings: 'Settings',
+          accept: 'Accept All',
+          reject: 'Reject All'
+        }
+      };
+      
+      const text = texts[currentLang];
+      document.getElementById('cookie-title').textContent = text.title;
+      document.getElementById('cookie-desc').textContent = text.desc;
+      document.getElementById('cookie-settings').textContent = text.settings;
+      document.getElementById('cookie-accept').textContent = text.accept;
+      document.getElementById('cookie-reject').textContent = text.reject;
+    }
+
+    // Load preferences from localStorage
+    function loadPreferences() {
+      const prefs = JSON.parse(localStorage.getItem('userPreferences') || '{}');
+      
+      // Load cookie preferences
+      if (prefs.analytics !== undefined) {
+        document.getElementById('analytics-cookies').checked = prefs.analytics;
+        document.getElementById('analytics-cookies-en').checked = prefs.analytics;
+      }
+      
+      if (prefs.marketing !== undefined) {
+        document.getElementById('marketing-cookies').checked = prefs.marketing;
+        document.getElementById('marketing-cookies-en').checked = prefs.marketing;
+      }
+      
+      // Show cookie banner if no preferences set
+      if (!prefs.cookieConsentGiven) {
+        setTimeout(() => {
+          document.getElementById('cookie-banner').classList.add('show');
+        }, 1000);
+      }
+    }
+
+    // Save preferences to localStorage
+    function savePreferences(prefs) {
+      const existing = JSON.parse(localStorage.getItem('userPreferences') || '{}');
+      const updated = { ...existing, ...prefs };
+      localStorage.setItem('userPreferences', JSON.stringify(updated));
+    }
+
+    // Show notification
+    function showNotification(message, type = 'success') {
+      const notification = document.getElementById('notification');
+      const text = document.getElementById('notification-text');
+      const icon = notification.querySelector('.notification-icon');
+      
+      // Update content
+      text.textContent = message;
+      
+      // Update classes
+      notification.className = `notification ${type}`;
+      
+      // Update icon
+      const icons = {
+        success: 'fas fa-check',
+        warning: 'fas fa-exclamation-triangle',
+        danger: 'fas fa-times'
+      };
+      icon.className = `${icons[type]} notification-icon`;
+      
+      // Show notification
+      notification.classList.add('show');
+      
+      // Hide after 4 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 4000);
+    }
+
+    // Cookie consent functions
+    function acceptAllCookies() {
+      savePreferences({
+        essential: true,
+        analytics: true,
+        marketing: true,
+        cookieConsentGiven: true
+      });
+      
+      document.getElementById('analytics-cookies').checked = true;
+      document.getElementById('marketing-cookies').checked = true;
+      document.getElementById('analytics-cookies-en').checked = true;
+      document.getElementById('marketing-cookies-en').checked = true;
+      
+      document.getElementById('cookie-banner').classList.remove('show');
+      
+      showNotification(
+        currentLang === 'ar' ? 'تم قبول جميع الكوكيز' : 'All cookies accepted',
+        'success'
+      );
+    }
+
+    function rejectAllCookies() {
+      savePreferences({
+        essential: true,
+        analytics: false,
+        marketing: false,
+        cookieConsentGiven: true
+      });
+      
+      document.getElementById('analytics-cookies').checked = false;
+      document.getElementById('marketing-cookies').checked = false;
+      document.getElementById('analytics-cookies-en').checked = false;
+      document.getElementById('marketing-cookies-en').checked = false;
+      
+      document.getElementById('cookie-banner').classList.remove('show');
+      
+      showNotification(
+        currentLang === 'ar' ? 'تم رفض الكوكيز الاختيارية' : 'Optional cookies rejected',
+        'warning'
+      );
+    }
+
+    function showPrivacySettings() {
+      document.getElementById('cookie-banner').classList.remove('show');
+      document.getElementById('privacy-settings').classList.add('show');
+      
+      // Scroll to privacy section
+      if (currentLang === 'ar') {
+        document.getElementById('privacy').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        document.getElementById('en-privacy').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function savePrivacySettings() {
+      const analytics = document.getElementById('analytics-cookies').checked;
+      const marketing = document.getElementById('marketing-cookies').checked;
+      
+      savePreferences({
+        essential: true,
+        analytics: analytics,
+        marketing: marketing,
+        cookieConsentGiven: true
+      });
+      
+      // Sync with English version
+      document.getElementById('analytics-cookies-en').checked = analytics;
+      document.getElementById('marketing-cookies-en').checked = marketing;
+      
+      showNotification('تم حفظ إعدادات الخصوصية', 'success');
+    }
+
+    function savePrivacySettingsEn() {
+      const analytics = document.getElementById('analytics-cookies-en').checked;
+      const marketing = document.getElementById('marketing-cookies-en').checked;
+      
+      savePreferences({
+        essential: true,
+        analytics: analytics,
+        marketing: marketing,
+        cookieConsentGiven: true
+      });
+      
+      // Sync with Arabic version
+      document.getElementById('analytics-cookies').checked = analytics;
+      document.getElementById('marketing-cookies').checked = marketing;
+      
+      showNotification('Privacy settings saved', 'success');
+    }
+
+    function resetPrivacySettings() {
+      document.getElementById('analytics-cookies').checked = false;
+      document.getElementById('marketing-cookies').checked = false;
+      document.getElementById('analytics-cookies-en').checked = false;
+      document.getElementById('marketing-cookies-en').checked = false;
+      
+      showNotification('تم إعادة تعيين الإعدادات', 'warning');
+    }
+
+    function resetPrivacySettingsEn() {
+      document.getElementById('analytics-cookies').checked = false;
+      document.getElementById('marketing-cookies').checked = false;
+      document.getElementById('analytics-cookies-en').checked = false;
+      document.getElementById('marketing-cookies-en').checked = false;
+      
+      showNotification('Settings reset', 'warning');
+    }
+
+    // Newsletter functions
+    function subscribeNewsletter() {
+      const email = document.getElementById('newsletter-email').value;
+      const consent = document.getElementById('newsletter-consent').checked;
+      
+      if (!email || !consent) {
+        showNotification('يرجى ملء جميع الحقول والموافقة على الشروط', 'warning');
+        return;
+      }
+      
+      // Save subscription
+      const subscriptions = JSON.parse(localStorage.getItem('newsletters') || '[]');
+      if (!subscriptions.includes(email)) {
+        subscriptions.push(email);
+        localStorage.setItem('newsletters', JSON.stringify(subscriptions));
+      }
+      
+      document.getElementById('newsletter-email').value = '';
+      document.getElementById('newsletter-consent').checked = false;
+      
+      showNotification('تم الاشتراك بنجاح في النشرة الإخبارية!', 'success');
+    }
+
+    function subscribeNewsletterEn() {
+      const email = document.getElementById('newsletter-email-en').value;
+      const consent = document.getElementById('newsletter-consent-en').checked;
+      
+      if (!email || !consent) {
+        showNotification('Please fill all fields and agree to terms', 'warning');
+        return;
+      }
+      
+      // Save subscription
+      const subscriptions = JSON.parse(localStorage.getItem('newsletters') || '[]');
+      if (!subscriptions.includes(email)) {
+        subscriptions.push(email);
+        localStorage.setItem('newsletters', JSON.stringify(subscriptions));
+      }
+      
+      document.getElementById('newsletter-email-en').value = '';
+      document.getElementById('newsletter-consent-en').checked = false;
+      
+      showNotification('Successfully subscribed to newsletter!', 'success');
+    }
+
+    function unsubscribeNewsletter() {
+      const email = document.getElementById('unsubscribe-email').value;
+      
+      if (!email) {
+        showNotification('يرجى إدخال البريد الإلكتروني', 'warning');
+        return;
+      }
+      
+      // Remove subscription
+      const subscriptions = JSON.parse(localStorage.getItem('newsletters') || '[]');
+      const updated = subscriptions.filter(sub => sub !== email);
+      localStorage.setItem('newsletters', JSON.stringify(updated));
+      
+      document.getElementById('unsubscribe-email').value = '';
+      
+      if (subscriptions.includes(email)) {
+        showNotification('تم إلغاء الاشتراك بنجاح', 'success');
+      } else {
+        showNotification('البريد الإلكتروني غير مسجل', 'warning');
+      }
+    }
+
+    function unsubscribeNewsletterEn() {
+      const email = document.getElementById('unsubscribe-email-en').value;
+      
+      if (!email) {
+        showNotification('Please enter email address', 'warning');
+        return;
+      }
+      
+      // Remove subscription
+      const subscriptions = JSON.parse(localStorage.getItem('newsletters') || '[]');
+      const updated = subscriptions.filter(sub => sub !== email);
+      localStorage.setItem('newsletters', JSON.stringify(updated));
+      
+      document.getElementById('unsubscribe-email-en').value = '';
+      
+      if (subscriptions.includes(email)) {
+        showNotification('Successfully unsubscribed', 'success');
+      } else {
+        showNotification('Email not found in subscriptions', 'warning');
+      }
+    }
+
+    // Data management functions
+    function downloadData() {
+      const data = {
+        preferences: JSON.parse(localStorage.getItem('userPreferences') || '{}'),
+        newsletters: JSON.parse(localStorage.getItem('newsletters') || '[]'),
+        contacts: JSON.parse(localStorage.getItem('contacts') || '[]')
+      };
+      
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'my-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showNotification('تم تحميل البيانات', 'success');
+    }
+
+    function downloadDataEn() {
+      const data = {
+        preferences: JSON.parse(localStorage.getItem('userPreferences') || '{}'),
+        newsletters: JSON.parse(localStorage.getItem('newsletters') || '[]'),
+        contacts: JSON.parse(localStorage.getItem('contacts') || '[]')
+      };
+      
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'my-data.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showNotification('Data downloaded', 'success');
+    }
+
+    function deleteData() {
+      if (confirm('هل أنت متأكد من حذف جميع بياناتك؟ هذا الإجراء لا يمكن التراجع عنه.')) {
+        localStorage.removeItem('userPreferences');
+        localStorage.removeItem('newsletters');
+        localStorage.removeItem('contacts');
+        
+        // Reset form states
+        document.getElementById('analytics-cookies').checked = false;
+        document.getElementById('marketing-cookies').checked = false;
+        document.getElementById('analytics-cookies-en').checked = false;
+        document.getElementById('marketing-cookies-en').checked = false;
+        
+        showNotification('تم حذف جميع البيانات', 'danger');
+        
+        // Show cookie banner again
+        setTimeout(() => {
+          document.getElementById('cookie-banner').classList.add('show');
+        }, 2000);
+      }
+    }
+
+    function deleteDataEn() {
+      if (confirm('Are you sure you want to delete all your data? This action cannot be undone.')) {
+        localStorage.removeItem('userPreferences');
+        localStorage.removeItem('newsletters');
+        localStorage.removeItem('contacts');
+        
+        // Reset form states
+        document.getElementById('analytics-cookies').checked = false;
+        document.getElementById('marketing-cookies').checked = false;
+        document.getElementById('analytics-cookies-en').checked = false;
+        document.getElementById('marketing-cookies-en').checked = false;
+        
+        showNotification('All data deleted', 'danger');
+        
+        // Show cookie banner again
+        setTimeout(() => {
+          document.getElementById('cookie-banner').classList.add('show');
+        }, 2000);
+      }
+    }
+
+    // Contact form functions
+    function submitContactForm() {
+      const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
+      const message = document.getElementById('contact-message').value;
+      const consent = document.getElementById('contact-consent').checked;
+      
+      if (!name || !email || !message || !consent) {
+        showNotification('يرجى ملء جميع الحقول والموافقة على معالجة البيانات', 'warning');
+        return;
+      }
+      
+      // Save contact
+      const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+      contacts.push({
+        name: name,
+        email: email,
+        message: message,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+      
+      // Reset form
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-email').value = '';
+      document.getElementById('contact-message').value = '';
+      document.getElementById('contact-consent').checked = false;
+      
+      showNotification('شكرًا لك! تم استلام رسالتك وسنتواصل معك قريبًا.', 'success');
+    }
+
+    function submitContactFormEn() {
+      const name = document.getElementById('contact-name-en').value;
+      const email = document.getElementById('contact-email-en').value;
+      const message = document.getElementById('contact-message-en').value;
+      const consent = document.getElementById('contact-consent-en').checked;
+      
+      if (!name || !email || !message || !consent) {
+        showNotification('Please fill all fields and agree to data processing', 'warning');
+        return;
+      }
+      
+      // Save contact
+      const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+      contacts.push({
+        name: name,
+        email: email,
+        message: message,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+      
+      // Reset form
+      document.getElementById('contact-name-en').value = '';
+      document.getElementById('contact-email-en').value = '';
+      document.getElementById('contact-message-en').value = '';
+      document.getElementById('contact-consent-en').checked = false;
+      
+      showNotification('Thank you! Your message has been received and we will contact you soon.', 'success');
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadPreferences();
+      updateCookieBannerText();
+    });
   </script>
 </body>
 </html>
